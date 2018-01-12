@@ -1,0 +1,33 @@
+#viewport {
+    width:80%;
+    height:1000px;
+    float: left;
+    position: fixed;
+
+}
+
+#buttons {
+    position: relative;
+    /*border-width:5px;
+    border-style: solid;*/
+    float: right;
+    height: 1000px;
+    width: 20%;
+}
+
+.button{
+    position:absolute;
+    left: 40%;
+}
+
+#load {
+    top: 100px;
+}
+
+#save {
+    top: 200px;
+}
+
+#dock {
+    top: 300px;
+}
