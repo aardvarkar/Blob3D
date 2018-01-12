@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script src="https://unpkg.com/ngl"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var stage = new NGL.Stage("viewport");
+      stage.loadFile("3a5p.pdb", {defaultRepresentation: true});
+    });
+  </script>
+  <div id="viewport" style="width:1920px; height:1080px;"></div>
+</body>
+</html>
