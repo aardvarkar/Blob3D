@@ -1,11 +1,11 @@
 # Visualisation des protéines (3D) - modélisation d'interactions protéines/protéines.
 #### M. Binet, G. Debras, J. Mainguy, A. Rohan et F. Soubès
 
-#Objectifs
+# Objectifs
 
 Créer un web service dédié à cet étrange objet qui rassemble tous les domaines d'analyses bioinformatiques rencontrées dans les plateformes internationales. 
 
-#Méthode
+# Méthode
 
 Vous devrez concevoir et implémenter un des services qui permette de réaliser des analyses bioinformatiques standard. La saisie ou l'importation de fichiers en entrée devront elles aussi proposées.
 
