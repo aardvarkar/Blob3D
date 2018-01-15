@@ -3,3 +3,4 @@
 // });
 
 var stage = new NGL.Stage("viewport");
+var protNum = 0;

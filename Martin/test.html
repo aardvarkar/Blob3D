@@ -12,8 +12,17 @@
     <div id="buttons">
     <input type="file" id="browse" class="button"></input>
     <button id="load" class="button">Load</button>
+    <button id="clear" class="button">Clear</button>
     <button id="save" class="button">Save</button>
     <button id="dock" class="button">Dock</button>
+    <div class="dropdown">
+        <button onclick="dropdown()" class="dropbtn">Change Visualization</button>
+        <div id="myDropdown" class="dropdown-content">
+            <button id="backbone">Backbone</button>
+            <button id="ballStick">Ball and Stick</button>
+            <button id="cartoon">Cartoon</button>
+        </div>
+    </div>
     <script src="load.js"></script>
     </div>
 
