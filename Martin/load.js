@@ -7,18 +7,31 @@ function load(){
     // att.value = "browse";                           // Set the value of the class attribute
     // loadButton.setAttributeNode(att);
     var doc = document.getElementById("browse").files[0];
-    if (protNum > 0){
+    if (listeProts.length > 0){
         if (confirm('Do you want to keep the previous loaded files?')) {
             null;
         }
         else {
             stage.removeAllComponents();
-            protNum = 0;
+            listeProts = [];
         }
     }
-    stage.loadFile(doc, {defaultRepresentation: true});
-    protNum += 1;
+    stage.loadFile(doc, {defaultRepresentation: true}).then( function( comp){
+        console.log("loading successful");
+        listeProts.push(comp);
+        displayProteins();
+    });
 
+}
+
+function displayProteins(){
+    var names = "";
+    console.log(listeProts);
+    for (i=0;i<listeProts.length;i++) {
+        console.log(listeProts[i].name);
+        names += listeProts[i].name + "<br />";
+    }
+    document.getElementById("proteins").innerHTML = names;
 }
 
 function changeRepresentation(representation){
@@ -31,8 +44,8 @@ function changeRepresentation(representation){
 
 function clear(){
     stage.removeAllComponents();
-    stage.dispose();
-    protNum = 0;
+    listeProts = [];
+    displayProteins();
 }
 
 /* When the user clicks on the button,
@@ -56,7 +69,9 @@ window.onclick = function(event) {
   }
 }
 
+
 document.getElementById("load").addEventListener("click", load);
+document.getElementById("clear").addEventListener("click", clear);
 document.getElementById("backbone").addEventListener("click", function(){
     changeRepresentation("backbone");
 });

@@ -1,7 +1,7 @@
 #viewport {
     width:80%;
     height:100%;
-    float: left;
+    /*float: left;*/
     position: fixed;
 
 }
@@ -17,22 +17,22 @@
 
 .button{
     position:absolute;
-    left: 40%;
+    left: 30%;
 }
 
 #load {
     top: 100px;
-    right: 50px;
+    /*right: 50%;*/
 }
 
 #browse{
   top: 70px;
-  right: 100px;
+  /*right: 100px;*/
 }
 
 #clear{
   top: 150px;
-  right: 100px;
+  /*right: 50%;*/
 }
 
 #save {
@@ -41,6 +41,12 @@
 
 #dock {
     top: 300px;
+}
+
+#listProteins{
+    position:absolute;
+    left: 15%;
+    top: 700px;
 }
 
 .dropbtn {
@@ -60,7 +66,7 @@
     position: relative;
     display: inline-block;
     top: 500px;
-    left: 100px;
+    left: 30%;
 }
 
 .dropdown-content {
