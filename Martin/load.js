@@ -69,6 +69,10 @@ window.onclick = function(event) {
   }
 }
 
+function dock(){
+    var win = window.open("https://cluspro.bu.edu/home.php");
+}
+
 
 document.getElementById("load").addEventListener("click", load);
 document.getElementById("clear").addEventListener("click", clear);
@@ -81,3 +85,4 @@ document.getElementById("ballStick").addEventListener("click", function(){
 document.getElementById("cartoon").addEventListener("click", function(){
     changeRepresentation("cartoon");
 });
+document.getElementById("dock").addEventListener("click", dock);
