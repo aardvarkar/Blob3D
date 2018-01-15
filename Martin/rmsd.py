@@ -1,5 +1,4 @@
-
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python # -*- coding: UTF-8 -*-
 
 # importer biopandas via commande
 #   pip install biopandas
@@ -7,32 +6,55 @@
 
 
 from biopandas.pdb import PandasPdb
+import os
 
-# genere un objet panda dico a partir du pdb
-ppdb = PandasPdb().read_pdb('1ag4.pdb')
-
-#from IPython import get_ipython
-#get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
 
-# genere figure distribution des atoms
-plt.figure(1)
-ppdb.df['ATOM']['element_symbol'].value_counts().plot(kind='bar')
-plt.title('Distribution of Atom Types')
-plt.xlabel('elements')
-plt.ylabel('count')
-plt.savefig("distrib.png")
+cwd = os.getcwd()
+liste =[]
+# parcours tous les fichiers .pdb et stock les noms dans une liste.
+for root, dirs, files in os.walk(cwd):
+    for file in files:
+        if file.endswith('.pdb'):
+            liste.append(file)
 
-# generer figure repartition B factors ( mobilité des atoms )
-plt.figure(2)
-ppdb.df['ATOM']['b_factor'].plot(kind='line')
-plt.title('B-Factors Along the Amino Acid Chain')
-plt.xlabel('Residue Number')
-plt.ylabel('B-factor in $A^2$')
-plt.savefig("bfactor.png")
-plt.show()
+
+sep="."
+# genere un objet panda dico a partir du pdb
+for i in liste :
+
+	
+	
+	
+	ppdb = PandasPdb().read_pdb(i)
+	#enleve le .pdb une fois la lecture du fichier
+	i = i.split(sep, 1)[0]
+	
+	#from IPython import get_ipython
+	#get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+	# genere figure distribution des atoms
+	plt.figure(1)
+	ppdb.df['ATOM']['element_symbol'].value_counts().plot(kind='bar')
+	plt.title('Distribution of Atom Types')
+	plt.xlabel('elements')
+	plt.ylabel('count')
+	
+	plt.savefig("distrib_"+str(i)+".png")
+	plt.close()
+
+	# generer figure repartition B factors ( mobilité des atoms )
+	plt.figure(2)
+	ppdb.df['ATOM']['b_factor'].plot(kind='line')
+	plt.title('B-Factors Along the Amino Acid Chain')
+	plt.xlabel('Residue Number')
+	plt.ylabel('B-factor in $A^2$')
+	plt.savefig("bfactor_"+str(i)+".png")
+	plt.show()
+	plt.close()
 
 
 
