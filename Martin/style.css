@@ -1,6 +1,6 @@
 #viewport {
     width:80%;
-    height:1000px;
+    height:100%;
     float: left;
     position: fixed;
 
@@ -11,7 +11,7 @@
     /*border-width:5px;
     border-style: solid;*/
     float: right;
-    height: 1000px;
+    height: 100%;
     width: 20%;
 }
 
@@ -22,6 +22,12 @@
 
 #load {
     top: 100px;
+    right: 50px;
+}
+
+#browse{
+  top: 70px;
+  right: 100px;
 }
 
 #save {
