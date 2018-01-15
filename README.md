@@ -13,6 +13,7 @@ Une mission de coordination sera indispensable entre les groupes pour définir e
 
 A l'issue du projet vous devrez réaliser un rapport de 20 à 30 pages sur votre travail, détaillant l'architecture qui a été conçue et les outils de gestion de projet que vous aurez utilisés éventuellement. Un intérêt particulier devra être porté sur l'utilisation de formats, qu'ils soient existants ou créés spécifiquement pour votre application. 
 
+# Contraintes 
 Le plus souvent le code de nombreuses applications sont disponibles librement, votre travail consistera à intégrer (plugins, module, mise en librairie ...) ce code dans votre solution.
 
 Si nécessaire, vous pourrez aussi connecter (réaliser des "pipeline") avec d'autres outils disponibles.
