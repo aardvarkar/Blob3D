@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"  name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,11 +15,16 @@
     <button id="clear" class="button">Clear</button>
     <button id="save" class="button">Save</button>
     <button id="dock" class="button">Dock</button>
-    <input type="button" onclick="test.location.href='https://fsoubes.shinyapps.io/ProteinPDB/';document.getElementById('test').frameBorder=1" class="action-button shadow animate lavender" value="PDBstat">
-    <input type="button" onclick="test.location.href='blank.html';document.getElementById('test').frameBorder=0" class="action-button shadow animate red" value="Clear">
-    <iframe src="blank.html" frameborder="0" name="test" id="test" width=1200 height=800></iframe>
+    <button id="myBtn">Open Modal</button>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+	<span class="close">&times;</span>
+	<a href="https://fsoubes.shinyapps.io/ProteinPDB/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">PDB stat</a>
+	<a href="https://fsoubes.shinyapps.io/ProteinPDB/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">PDB stat 2 etc ...</a>
+      </div>   
+    </div>
     <div class="dropdown">
-        <button onclick="dropdown()" class="dropbtn">Change Visualization</button>
+      <button onclick="dropdown()" class="dropbtn">Change Visualization</button>   
         <div id="myDropdown" class="dropdown-content">
             <button id="backbone">Backbone</button>
             <button id="ballStick">Ball and Stick</button>
@@ -30,6 +35,7 @@
         <p id="proteins"></p>
     </div>
     <script src="load.js"></script>
+    <script src="modal.js"></script>
     <script src="rmsd.py"></script>
     </div>
 
