@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"  name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="viewport">
+        <script src="https://unpkg.com/ngl"></script>
+        <script src="ngl_script.js"></script>
+    </div>
+    <div id="buttons">
+    <input type="file" id="browse" class="button"></input>
+    <button id="load" class="button">Load</button>
+    <button id="clear" class="button">Clear</button>
+    <button id="save" class="button">Save</button>
+    <button id="dock" class="button">Dock</button>
+    <button id="myBtn">Open Stat</button>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+	<span class="close">&times;</span>
+	<a href="https://fsoubes.shinyapps.io/ProteinPDB/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">PDB stat</a>
+	<a href="https://fsoubes.shinyapps.io/ProteinPDBbrowser/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">Browse PDB for stat</a>
+      </div>   
+    </div>
+    <div class="dropdown">
+      <button onclick="dropdown()" class="dropbtn">Change Visualization</button>   
+        <div id="myDropdown" class="dropdown-content">
+            <button id="backbone">Backbone</button>
+            <button id="ballStick">Ball and Stick</button>
+            <button id="cartoon">Cartoon</button>
+        </div>
+    </div>
+    <div id=listProteins>List of loaded proteins
+        <p id="proteins"></p>
+    </div>
+    <script src="load.js"></script>
+    <script src="modal.js"></script>
+    <script src="rmsd.py"></script>
+    </div>
+
+</body>
+</html>
