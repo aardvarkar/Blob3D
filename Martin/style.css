@@ -42,6 +42,9 @@
 #dock {
     top: 300px;
 }
+#shiny {
+    top: 400px;
+}
 
 #listProteins{
     position:absolute;
