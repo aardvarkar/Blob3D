@@ -1,4 +1,6 @@
-import ChainidColormaker from 'ngl/src/color/chainid-colormaker.js'
+
+let current_representation = 'cartoon';
+let current_scheme = 'chainid';
 
 function load(){
     // var x = document.createElement("INPUT");
@@ -24,6 +26,8 @@ function load(){
         displayProteins();
     });
 
+
+
 }
 
 function displayProteins(){
@@ -36,10 +40,23 @@ function displayProteins(){
     document.getElementById("proteins").innerHTML = names;
 }
 
-function changeRepresentation(representation){
+function changeRepresentation(representation, current_scheme){
     stage.eachComponent(function( o ){
+        console.log(current_scheme);
         o.removeAllRepresentations();
-        o.addRepresentation( representation );
+        o.addRepresentation( representation, {colorScheme: current_scheme});
+        current_representation = representation
+        o.autoView();
+    });
+}
+//
+function changeColor(scheme, current_representation){
+    stage.eachComponent(function( o ){
+        console.log(current_scheme);
+        o.removeAllRepresentations();
+        console.log(current_representation);
+        o.addRepresentation( current_representation, {colorScheme: scheme});
+        current_scheme = scheme
         o.autoView();
     });
 }
@@ -79,15 +96,19 @@ function dock(){
 document.getElementById("load").addEventListener("click", load);
 document.getElementById("clear").addEventListener("click", clear);
 document.getElementById("backbone").addEventListener("click", function(){
-    changeRepresentation("backbone");
+    changeRepresentation("backbone", current_scheme);
+    // current_representation = "backbone";
 });
 document.getElementById("ballStick").addEventListener("click", function(){
-    changeRepresentation("ball+stick");
+    changeRepresentation("ball+stick", current_scheme);
+    // current_representation = "ball+stick";
 });
 document.getElementById("cartoon").addEventListener("click", function(){
-    changeRepresentation("cartoon");
+    changeRepresentation("cartoon", current_scheme);
+    // current_representation = "cartoon";
 });
-document.getElementById("cartoon").addEventListener("click", function(){
-    changeRepresentation("surface", { colorScheme: "electrostatic" } );
-});
+
+document.getElementById("color").addEventListener("click", function(){
+    changeColor("hydrophobicity",  current_representation);
+  });
 document.getElementById("dock").addEventListener("click", dock);
