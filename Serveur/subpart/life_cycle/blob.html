@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+
+  <link rel='stylesheet' type='text/css'href='blob.css'/>
+
+  <style type="text/css">
+  </style>
+  <div id="header">
+    <h1>Life cycle of Physarum polycephalum </h1>
+</div>
+</head>
+<body scroll="no" style="overflow: hidden">
+
+  <!-- START SIGMA IMPORTS -->
+  <script src="./sigma/src/sigma.core.js"></script>
+  <script src="./sigma/src/conrad.js"></script>
+  <script src="./sigma/src/utils/sigma.utils.js"></script>
+  <script src="./sigma/src/utils/sigma.polyfills.js"></script>
+  <script src="./sigma/src/sigma.settings.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.dispatcher.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.configurable.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.graph.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.camera.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.quad.js"></script>
+  <script src="./sigma/src/classes/sigma.classes.edgequad.js"></script>
+  <script src="./sigma/src/captors/sigma.captors.mouse.js"></script>
+  <script src="./sigma/src/captors/sigma.captors.touch.js"></script>
+  <script src="./sigma/src/renderers/sigma.renderers.canvas.js"></script>
+  <script src="./sigma/src/renderers/sigma.renderers.webgl.js"></script>
+  <script src="./sigma/src/renderers/sigma.renderers.svg.js"></script>
+  <script src="./sigma/src/renderers/sigma.renderers.def.js"></script>
+  <script src="./sigma/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+  <script src="./sigma/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+  <script src="./sigma/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+  <script src="./sigma/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+  <script src="./sigma/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+  <script src="./sigma/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.utils.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.edges.def.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.labels.def.js"></script>
+  <script src="./sigma/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+  <script src="./sigma/src/middlewares/sigma.middlewares.rescale.js"></script>
+  <script src="./sigma/src/middlewares/sigma.middlewares.copy.js"></script>
+  <script src="./sigma/src/misc/sigma.misc.animation.js"></script>
+  <script src="./sigma/src/misc/sigma.misc.bindEvents.js"></script>
+  <script src="./sigma/src/misc/sigma.misc.bindDOMEvents.js"></script>
+  <script src="./sigma/src/misc/sigma.misc.drawHovers.js"></script>
+  <!-- END SIGMA IMPORTS -->
+  <script src="sigma/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
+
+
+
+<div><hr class="separation" />
+<h1 id='ton_texte'></h1>
+</div>
+<div><hr class="separationv" /></div>
+
+<img src="image/diploid_Plasmodium.png" style="left:3%; top:40%; width:200px; height: 200px" onClick='aff_info(0)'>
+<img src="image/sclerotium.png" style="left:15%; top:50%; width:170px; height: 170px" onClick='aff_info(1)'>
+<img src="image/plasmo_sporange.png" style="left:15%; top:25%; width:150px; height: 150px" onClick='aff_info(2)'>
+<img src="image/Sporange.png" style="left:25%; top:15%; width:150px; height: 150px" onClick='aff_info(3)'>
+<img src="image/sporehaploid.png" style="left:37%; top:15%; width:110px; height: 110px" onClick='aff_info(4)'>
+<img src="image/germination.png" style="left:47%; top:25%; width:150px; height: 150px" onClick='aff_info(5)'>
+<img src="image/haploidcell.png" style="left:50%; top:45%; width:100px; height: 100px" onClick='aff_info(6)'>
+<img src="image/Cyst.png" style="left:45%; top:60%; width:100px; height: 100px" onClick='aff_info(7)'>
+<img src="image/flagelle.png" style="left:57%; top:60%; width:100px; height: 100px" onClick='aff_info(8)'>
+<img src="image/newplasmodium.png" style="left:40%; top:74%; width:100px; height: 100px" onClick='aff_info(9)'>
+<img src="image/newplasmodium2.png" style="left:20%; top:74%; width:200px; height: 200px" onClick='aff_info(10)'>
+
+<div id="container">
+<div id="graph-container"></div>
+</div>
+<script type="text/javascript" src="blob.js"></script>
+
+
+</body>
+</html>
