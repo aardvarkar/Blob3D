@@ -1,0 +1,7 @@
+#installer nvm :
+sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+#installer la bonne version :
+nvm install v6.12.3
+
+nvm run 6.12.3 Server.js
