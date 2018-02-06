@@ -22,13 +22,32 @@ function load(){
             clearChoice("mySelect2");
         }
     }
-    stage.loadFile(doc, {defaultRepresentation: true}).then( function( comp){
+    stage.loadFile(doc).then( function( comp){
         console.log("loading successful");
         listeProts.push(comp);
         // displayProteins();
+        comp.addRepresentation(current_representation, {
+                                              sele: "polymer",
+                                              colorScheme: current_scheme,
+                                              colorDomain: [ -0.3, 0.3 ],
+                                              surfaceType: "av"
+                                            });
+        comp.autoView();
         addChoice("mySelect1");
         addChoice("mySelect2");
     });
+    stage.signals.hovered.add(function (pickingProxy) {
+  if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)){
+    var atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+    var cp = pickingProxy.canvasPosition;
+    tooltip.innerText = "ATOM: " + atom.qualifiedName();
+    tooltip.style.bottom = cp.y + 3 + "px";
+    tooltip.style.left = cp.x + 3 + "px";
+    tooltip.style.display = "block";
+  }else{
+    tooltip.style.display = "none";
+  }
+});
 
 }
 
@@ -57,12 +76,36 @@ function clearChoice(selectName){
 //     document.getElementById("proteins").innerHTML = names;
 // }
 
-function changeRepresentation(representation){
+function changeRepresentation(representation, current_scheme){
     stage.eachComponent(function( o ){
+        console.log(current_scheme);
         o.removeAllRepresentations();
-        o.addRepresentation( representation );
+        o.addRepresentation( representation, {
+                                              sele: "polymer",
+                                              colorScheme: current_scheme,
+                                              colorDomain: [ -0.3, 0.3 ],
+                                              surfaceType: "av"
+                                            });
+        current_representation = representation
         o.autoView();
     });
+}
+
+function changeColor(scheme, current_representation){
+    stage.eachComponent(function( o ){
+        console.log(current_scheme);
+        o.removeAllRepresentations();
+        console.log(current_representation);
+        o.addRepresentation( current_representation, {
+                                              sele: "polymer",
+                                              colorScheme: scheme,
+                                              colorDomain: [ -0.3, 0.3 ],
+                                              surfaceType: "av"
+                                            });
+        current_scheme = scheme
+        o.autoView();
+    });
+
 }
 
 function clear(){
@@ -107,6 +150,27 @@ window.onclick = function(event) {
 
 document.addEventListener("load", initialLoad());
 
+// Default representation and color scheme
+let current_representation = 'cartoon';
+let current_scheme = 'chainid';
+let spin_flag = false;
+var tooltip = document.createElement("div");
+Object.assign(tooltip.style, {
+  display: "none",
+  position: "absolute",
+  zIndex: 10,
+  pointerEvents: "none",
+  backgroundColor: "rgba(0, 0, 0, 0.6)",
+  color: "lightgrey",
+  padding: "0.5em",
+  fontFamily: "sans-serif"
+});
+
+stage.viewer.container.appendChild(tooltip);
+stage.makeImage
+// stage.mouseObserver.dispose();
+
+
 function dock(){
     var prot1 = document.getElementById("mySelect1")
     var prot1pdb = prot1.options[prot1.selectedIndex].text
@@ -126,13 +190,46 @@ function dock(){
 
 document.getElementById("load").addEventListener("click", load);
 document.getElementById("clear").addEventListener("click", clear);
+
+//REPRESENTATION
 document.getElementById("backbone").addEventListener("click", function(){
-    changeRepresentation("backbone");
+    changeRepresentation("backbone", current_scheme);
+    // current_representation = "backbone";
 });
 document.getElementById("ballStick").addEventListener("click", function(){
-    changeRepresentation("ball+stick");
+    changeRepresentation("ball+stick", current_scheme);
+    // current_representation = "ball+stick";
 });
 document.getElementById("cartoon").addEventListener("click", function(){
-    changeRepresentation("cartoon");
+    changeRepresentation("cartoon", current_scheme);
+    // current_representation = "cartoon";
 });
-//document.getElementById("dock").addEventListener("click", dock);
+
+document.getElementById("surface").addEventListener("click", function(){
+    changeRepresentation("surface", current_scheme);
+    // current_representation = "cartoon";
+});
+
+
+// COLOR
+document.getElementById("hydrophobicity").addEventListener("click", function(){
+    changeColor("hydrophobicity",  current_representation);
+  });
+document.getElementById("chainid").addEventListener("click", function(){
+    changeColor("chainid",  current_representation);
+  });
+document.getElementById("atomindex").addEventListener("click", function(){
+    changeColor("atomindex",  current_representation);
+  });
+
+document.getElementById("electrostatic").addEventListener("click", function(){
+    let tmp_scheme = current_scheme;
+    changeColor("electrostatic",  "surface");
+    current_scheme = tmp_scheme
+  });
+
+document.getElementById("spin").addEventListener("click", function(){
+  spin_flag = spin_flag === true ? false : true;
+  stage.setSpin(spin_flag);
+  });
+// document.getElementById("dock").addEventListener("click", dock);
