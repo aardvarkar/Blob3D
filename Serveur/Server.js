@@ -1,6 +1,6 @@
-let express = require("express");
-let path = require("path");
-let fs = require("fs");
+var express = require("express");
+var path = require("path");
+var fs = require("fs");
 
 app = express();
 
@@ -15,7 +15,7 @@ app.get("/acceuil", (req, res) => {
 
 app.get("/subpart/proteins", (req, res) => {
             console.log("Proteins")
-            let files = fs.readdir(__dirname + "/public", (err, files) => {
+            var files = fs.readdir(__dirname + "/public", (err, files) => {
             fs.writeFile(__dirname + "/public/test.txt", files.map(x =>  x));
             })
 
