@@ -26,6 +26,10 @@
     right: 50%;
 }
 
+#shiny {
+    top: 400px;
+}
+
 #browse{
   top: 70px;
   /*right: 100px;*/
@@ -36,18 +40,12 @@
   /*right: 50%;*/
 }
 
-#save {
-    top: 200px;
-}
-
 #dock {
     top: 300px;
     left: 30%;
     position:relative;
 }
-#shiny {
-    top: 400px;
-}
+
 
 #listProteins{
     position:absolute;
@@ -96,7 +94,6 @@
 }
 
 .dockProts {
-    /*display: none;*/
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -131,7 +128,6 @@
 
 .dropdown {
     position: relative;
-    /*display: inline-block;*/
     top: 500px;
     left: 20%;
 }
@@ -161,7 +157,6 @@
 /* Popup container */
 .popup {
    position: relative;
-   /*display: inline-block;*/
    cursor: pointer;
 }
 

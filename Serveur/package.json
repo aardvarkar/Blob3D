@@ -1,0 +1,26 @@
+{
+    "name": "blob-project",
+    "version": "0.1.0",
+    "description": "Blob project Bioninformatics Bordeaux",
+    "engines": {
+      "node": "8.9.1"
+    },
+    "main": "Server.js",
+    "scripts": {
+      "start": "node Server.js",
+      "test": ""
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Zarete/Blob"
+    },
+    "dependencies": {
+      "express": "^4.15.2"
+    },
+    "keywords": [
+      "blob",
+      "biology",
+      "platform"
+    ],
+    "license": "None"
+  }

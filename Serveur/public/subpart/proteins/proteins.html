@@ -90,8 +90,32 @@
 
           <div class="col-md-offset-1 col-md-3">
             <div class="row">
-              <div class="col-md-1">
-                <input type="file" id="browse" class="input"></input>
+              <div class="col-md-4">
+                <form name="proteinList">
+                  <select class="btn" name="selection" size=1>
+                    <option>Browse for a new file...</option>
+                  </select>
+                </form>
+                <script>
+                  let xhr;
+                  if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                  } else if (window.ActiveXObject) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+
+                  xhr.onreadystatechange = function () {
+                    let blobProteins = xhr.responseText;
+                    let blobProteinsArray = blobProteins.split(",");
+                    document.proteinList.selection.options.length = blobProteinsArray.length + 1;
+                    for (let i = 1; i < blobProteinsArray.length + 1; i++){
+                      document.proteinList.selection.options[i].value = blobProteinsArray[i-1];
+                      document.proteinList.selection.options[i].text = blobProteinsArray[i-1];
+                    }
+                  };
+                  xhr.open("GET", "listPDBServer.txt"); //assuming kgr.bss is plaintext
+                  xhr.send();
+                </script>
               </div>
             </div>
             <div class="row">
@@ -100,10 +124,24 @@
               </div>
             </div>
 
+            <input type="file" id="hiddenInput" />
+
             <div class="row">
-              <div class="col-md-4">
-                <button id="save" class="btn">Save</button>
-              </div>
+              <div class="col-md-1">
+                 <button id="myBtn" class="btn">Open stat</button>
+                 <div id="myModal" class="modal">
+                   <div class="modal-content">
+                     <span class="close">&times;</span>
+                     <a href=" https://fsoubes.shinyapps.io/PDBinfo/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">PDB information</a>
+                     <a href="https://fsoubes.shinyapps.io/Proteinstructure/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">Bastic statistic</a>
+            <a href="https://fsoubes.shinyapps.io/ProteinPDB/" onclick="window.open(this.href, 'exemple', 'height=500, width=800, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=no, status=no'); return false;">Advanced statistic</a>
+
+                   </div>
+                 </div>
+                  </div>
+                </div>
+
+            <div class="row">
               <div class="col-md-4 col-md-offset-4">
                 <button style="" id="clear" class="btn">Clear</button>
               </div>
@@ -134,39 +172,22 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-4">
-                <form name="proteinList">
-                  <select class="btn" id="mySelect1" name="selection" size=1>
-                    <option>Proteins List</option>
-                  </select>
-                </form>
-                <script>
-                  let xhr;
-                  if (window.XMLHttpRequest) {
-                    xhr = new XMLHttpRequest();
-                  } else if (window.ActiveXObject) {
-                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                  }
-
-                  xhr.onreadystatechange = function () {
-                    let blobProteins = xhr.responseText;
-                    let blobProteinsArray = blobProteins.split(",");
-                    document.proteinList.selection.options.length = blobProteinsArray.length;
-                    for (let i = 0; i < blobProteinsArray.length; i++){
-                      document.proteinList.selection.options[i].value = blobProteinsArray[i];
-                      document.proteinList.selection.options[i].text = blobProteinsArray[i];
-                    }
-                  };
-                  xhr.open("GET", "../../test.txt"); //assuming kgr.bss is plaintext
-                  xhr.send();
-                </script>
-              </div>
-            </div>
-
 
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <button class="btn" id="dockDownload">Result Docking</button>
+          </div>
+        </div>
+
+
+        <form method="get" action="file.doc" id="formDownload">
+          <button type="submit" id="hiddenDownload">Download!</button>
+        </form>
+
+        <!-- <a href="path_to_file" download="proposed_file_name" id="hiddenDownload"></a> -->
 
         <div class="row">
 
@@ -229,6 +250,8 @@
 
         </div>
 
+        </div>
+
       </div>
 
     </div>
@@ -257,11 +280,12 @@
   <script type="text/javascript" src="../../js/jquery.parallax.js"></script>
   <script type="text/javascript" src="../../js/jqBootstrapValidation.js"></script>
   <script type="text/javascript" src="../../js/contact_me.js"></script>
-  <script type="text/javascript" src="load.js"></script>
+  <script type="text/javascript" src="proteins.js"></script>
 
   <!-- Javascripts
     ================================================== -->
   <script type="text/javascript" src="../../js/main.js"></script>
+  <script type="text/javascript" src="modal.js"></script>
 </body>
 
 </html>

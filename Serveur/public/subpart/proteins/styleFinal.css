@@ -15,5 +15,13 @@
 }
 
 canvas{
-    border: 1px solid white;    
+    border: 1px solid white;
+}
+
+#hiddenInput{
+  visibility: hidden;
+}
+
+#hiddenDownload{
+  visibility: hidden;
 }
