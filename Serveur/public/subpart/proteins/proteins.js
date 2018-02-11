@@ -20,6 +20,9 @@ function loadPDB(file){
       addChoice("mySelect1");
       addChoice("mySelect2");
       stage.setParameters( { backgroundColor: background_color } );
+      stage.viewer.container.addEventListener( "dblclick", function(){
+    stage.toggleFullscreen();
+} );
   });
 }
 
@@ -226,6 +229,10 @@ document.getElementById("spin").addEventListener("click", function(){
     background_color= background_color == 'black' ? 'white' : 'black';
     stage.setParameters( { backgroundColor: background_color } );
     });
+
+    document.getElementById("fullscreen").addEventListener("click", function(){
+      stage.toggleFullscreen();
+      });  
 
 /*resets the value to address navigating away from the page
 and choosing to upload the same file */
