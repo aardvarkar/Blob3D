@@ -3,6 +3,7 @@ var fileFromServer;
 let current_representation = 'cartoon';
 let current_scheme = 'chainid';
 let spin_flag = false;
+let background_color = 'black'
 
 function initialLoad(){
     var xhttp = new XMLHttpRequest();
@@ -10,11 +11,15 @@ function initialLoad(){
 
 function loadPDB(file){
   stage.loadFile(file, {defaultRepresentation: true}).then( function( comp){
+    //stage settings:
+
+      //options: "light", "dark"
       console.log("loading successful");
       listeProts.push(comp);
       changeRepresentation(current_representation, current_scheme);
       addChoice("mySelect1");
       addChoice("mySelect2");
+      stage.setParameters( { backgroundColor: background_color } );
   });
 }
 
@@ -216,6 +221,11 @@ document.getElementById("spin").addEventListener("click", function(){
   spin_flag = spin_flag === true ? false : true;
   stage.setSpin(spin_flag);
   });
+
+  document.getElementById("backcolor").addEventListener("click", function(){
+    background_color= background_color == 'black' ? 'white' : 'black';
+    stage.setParameters( { backgroundColor: background_color } );
+    });
 
 /*resets the value to address navigating away from the page
 and choosing to upload the same file */
