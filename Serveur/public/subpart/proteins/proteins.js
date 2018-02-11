@@ -4,6 +4,7 @@ let current_representation = 'cartoon';
 let current_scheme = 'chainid';
 let spin_flag = false;
 let background_color = 'black'
+let imgname = "screenshot.png"
 
 function initialLoad(){
     var xhttp = new XMLHttpRequest();
@@ -14,6 +15,8 @@ function loadPDB(file){
     //stage settings:
 
       //options: "light", "dark"
+      console.log(comp);
+      imgname = comp.name.replace(".pdb", "_") + imgname;
       console.log("loading successful");
       listeProts.push(comp);
       changeRepresentation(current_representation, current_scheme);
@@ -112,6 +115,7 @@ function changeColor(scheme, current_representation){
 
 function clear(){
     stage.removeAllComponents();
+    imgname =  "screenshot.png";
     listeProts = [];
     clearChoice("mySelect1");
     clearChoice("mySelect2");
@@ -232,7 +236,19 @@ document.getElementById("spin").addEventListener("click", function(){
 
     document.getElementById("fullscreen").addEventListener("click", function(){
       stage.toggleFullscreen();
-      });  
+      });
+
+document.getElementById("screenshot").addEventListener("click", function () {
+
+          stage.makeImage({
+            factor: 1,
+            antialias: false,
+            trim: false,
+            transparent: false
+          }).then(function (blob) {
+            NGL.download(blob, imgname)
+          })
+        });
 
 /*resets the value to address navigating away from the page
 and choosing to upload the same file */
